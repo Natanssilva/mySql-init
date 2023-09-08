@@ -33,3 +33,44 @@ init study for MySQL
         nacionalidade varchar(20)
       );
   ```
+- apagando um banco de dados:
+  ```
+  drop database nome_campo;
+  ```
+- definindo caracteres lingua portuguesa
+  ```
+  default character set utf8mb4
+  default collate utf8mb4_general_ci;
+  ```
+- Recriando a tabela com os caracteres:
+  ```
+  CREATE TABLE pessoas(
+        nome varchar(30) NOT NULL,         (not null para campos que são obrigatoriamente digitaveis)
+        nascimento date,
+        peso decimal(5,2),                // 5 casas ao todo e 2 é a qntd de numeros após virgula. por ex: 102,24
+        altura decimal(3,2),
+        sexo enum('M','F'),               //só aceita esses valores
+        nacionalidade varchar(20) DEFAULT 'BRASIL'   //se n for digitado nada o padrão será brasil
+      )default charset =  utf8mb4;
+  ```
+- apagando tabelas:
+```
+drop TABLE nome_tabela;
+```
+- CAMPO CHAVE PRIMÁRIA ( PRIMARY KEY)
+     - Esse campo NÃO se repete
+     - Não existe dois valores iguais pra chave primária
+     - SERVE COMO UM IDENTIFICAR
+- usando a tabela pessoas como exemplo disso ficaria:
+     ```
+          CREATE TABLE pessoas(
+		     id int NOT NULL auto_increment, //id vai ser um identificador(primary key) e o auto_increment calcula "o primeiro vai ser 1 e assim por diante"
+           nome varchar(30) NOT NULL,
+           nascimento date,
+           peso decimal(5,2),  
+           altura decimal(3,2),
+           sexo enum('M','F'), 
+           nacionalidade varchar(20) DEFAULT 'BRASIL',
+           primary key(id)
+         )default charset =  utf8mb4;
+     ```
