@@ -74,3 +74,22 @@ drop TABLE nome_tabela;
            primary key(id)
          )default charset =  utf8mb4;
      ```
+- comandos como CREATE TABLE e CREATE DATABASE são comandos DDL "Data definition Lenguage" ou seja comandos de definição
+- Inserindo dados em uma tabela com INSERT INTO:
+  ```
+	 INSERT INTO nome_tabela
+      ( nome ,nascimento, peso, altura, sexo, nacionalidade)
+      VALUES
+      ( 'natan' ,'ano-mes-dia', '55.5', '1.67', 'M', 'Brasil');
+  ```
+- Consultando TODOS os dados daquela tabela
+  ```
+	 SELECT * FROM nome_tabela;
+  ```
+- se usar DEFAULT como parametros na hora do INSERT caso tenha sido declarado na criação da tabela, se não inserir nenhum dado ele será preenchido com o DEFAULT, por exemplo na nossa tabela:
+  - se nao preencher nacionalidade, será colocado como Brasil por ser o DEFAULT
+-Caso adicione dados nas tabelas e a ordem dos dados seja igual a ordem da tabela tem uma forma simplificada do código anterior:
+  ```
+	 INSERT INTO pessoas VALUES
+     	 (DEFAULT ,'nome' ,'ano-mes-dia', '85.5', '1.73', 'M', 'Brasil');
+  ```
