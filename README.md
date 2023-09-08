@@ -93,3 +93,11 @@ drop TABLE nome_tabela;
 	 INSERT INTO pessoas VALUES
      	 (DEFAULT ,'nome' ,'ano-mes-dia', '85.5', '1.73', 'M', 'Brasil');
   ```
+- Como inserir vários dados de uma vez SE a ordem for a mesma(maneira simplificado)
+  ```
+	 INSERT INTO pessoas VALUES
+          (DEFAULT ,'nome' ,'1962-11-21', '85.5', '1.73', 'M', 'Brasil'),
+	  (DEFAULT ,'nome' ,'1948-03-21', '65.5', '1.59', 'f', 'Brasil'),
+          (DEFAULT ,'nome' ,'1958-11-25', '75.5', '1.78', 'M', 'Brasil');
+  ```
+- Comando INSERT TO é DML ( DATA MANIPULATION LANGUAGE)
