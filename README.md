@@ -239,3 +239,77 @@ drop TABLE nome_tabela;
    - server -> Import Database
  
 - Com servidores locais completos como XAMPP, LARAGON e outros voce pode analisar seu databse pelo phpMyADMIN e manipular dados por lá, onde vai mostrar os comandos sql e serve como aprendizado
+
+
+- SELECT
+  - Para ordenar uma tabela posso utilizar da seguinte maneira:
+    ```
+	SELECT * FROM nome_tabela
+    	order by nome_coluna; 
+    ```
+  - Dessa maneira vai ordenar de acordo com a coluna depois do order by
+  - Se utilizar o mesmo código com o DESC depois de nome_tabela, ele vai ordenar de cima pra baixo ou seja, o inverso
+  - Selecionando apenas colunas que voce deseja filtrar:
+    ```
+	SELECT nome_coluna1, nome_coluna2, nome_coluna3 from nome_tabela
+    	order by nome_coluna;   // que deseja ordenar
+    ```
+  - Selecionando LINHAS
+    ```
+	select * from cursos
+	where ano  = '2016'    //seleciona linhas onde a coluna ano for 2016
+	order by nome;
+    ```
+
+  - Selecionando LINHAS E COLUNAS
+    ```
+	select nome,descricao,carga, ano from cursos  
+	where ano  = '2014'
+	order by nome;
+
+    //o codigo busca na coluna nome,descricao,carga e ano da tabela cursos onde a coluna ano tiver o valor de 2014 e retorna isso ordenado pelo nome de cima para baixo
+    ```
+  - Selecionando linhas e colunas usando operadores relacionais
+    - <   MENOR
+    - <=  MENOR IGUAL
+    - >   MAIOR
+    - >=  MAIOR IGUAL
+    - =   IGUAL
+    - !=  DIFERENTE
+    - AND  E  (SÓ VAI SELECIONAR SE TIVER UM E OUTRO)
+    - OR   OU
+      
+      ```
+	select nome,descricao, ano from cursos
+	where ano  <= '2017'
+	order by ano;
+
+//O CODIGO BUSCA NA COLUNA nome, descricao e ano da tabela cursos onde o ano for menor ou igual a 2017 e ordena por ano
+// assim retorna os campos nome, descricao e ano que tem como valor de ano menor ou igual a 2017
+      ```
+- BETWEEN
+  - Selecionar os dados entre uma data e outra(uma faixa) por exemplo mas vale pra qualquer coluna
+   ```
+	select nome, ano from cursos
+	where ano between '2012' and '2015'
+	order by ano;
+
+   // código seleciona os campos nome e ano da tabela cursos onde o valor da coluna ano estiver entre 2012 e 2015 e retornam os dados que estão dentro dessa condição
+   ```
+- IN
+  - Selecionar campos com valores especificos, diferente de BETWEEN que engloba de um valor X até valor Y
+    ```
+	select nome, ano from cursos
+	where ano in ('2012', '2015')
+	order by ano;
+
+    //o código seleciona as colunas nome e ano da tabela cursos onde ano tiver o valor de 2012 e 2015 apenas e retorna isso
+    ```
+  - AND
+    ```
+	SELECT nome,carga,ano from cursos
+	where carga > 15 AND ano < 2018
+	order by ano;
+
+    //O CODIGO SÓ seleciona se um e outro forem verdadeiros, ou seja se uma coluna tiver carga maior que 15 e ano maior que 2018, ele não vai selecionar esse registro
+    ```
