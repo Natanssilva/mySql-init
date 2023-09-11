@@ -332,7 +332,7 @@ drop TABLE nome_tabela;
   - distinct serve para eliminar repetições, então  no caso do código acima ele iria parar de retornar varios 'brasil' e retornaria mostrando só uma vez já que é a unica nacionalidade
 
 - Funções de agregações
-  - count()
+  - count() "quantos"
     ```
 	select count(*) from cursos where carga > '50';  //aqui procura em todos os registros
     	select count(nome) from cursos where carga > '50';  // aqui procura especificamente na coluna nome
@@ -396,8 +396,19 @@ select min(peso) from pessoas where sexo = 'M' and nacionalidade = 'Brasil'; #an
 #exec9
 
 select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
-
-
-
-
 ```
+
+- Agrupando registros
+  ```
+  	SELECT carga from cursos
+	GROUP BY carga;     //Agrupamento. Esse código mostraria coluna carga e todos os valores agrupados por carga.
+
+  	select total_aulas, count(*) from cursos
+	group by total_aulas
+	order by total_aulas;
+
+  	//esse segundo código seleciona a coluna total de aulas, ele vai usar a função pra contabilizar isso na tablea cursos agrupando do campo total aula e ordenando pelo mesmo campo
+  	// esse codigo vai retornar todos os total_aulas e do lado o count(*) que vai mostrar quantos de cada valor tem ou seja 1: total_aulas(10) o count(*) vai ser 1 por só ter uma linha com 10 em total_aulas
+  ```
+
+
