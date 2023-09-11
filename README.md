@@ -95,10 +95,8 @@ drop TABLE nome_tabela;
   ```
 - Como inserir vários dados de uma vez SE a ordem for a mesma(maneira simplificado)
   ```
-	 INSERT INTO pessoas VALUES
-          (DEFAULT ,'nome' ,'1962-11-21', '85.5', '1.73', 'M', 'Brasil'),
-	  (DEFAULT ,'nome' ,'1948-03-21', '65.5', '1.59', 'f', 'Brasil'),
-          (DEFAULT ,'nome' ,'1958-11-25', '75.5', '1.78', 'M', 'Brasil');
+	
+  ,0
   ```
 - Comando INSERT TO é DML ( DATA MANIPULATION LANGUAGE)
 
@@ -272,12 +270,13 @@ drop TABLE nome_tabela;
   - Selecionando linhas e colunas usando operadores relacionais
     - <   MENOR
     - <=  MENOR IGUAL
-    -   >   MAIOR
-    -  >=  MAIOR IGUAL
+    - MAIOR  >
+    - MAIOR IGUAL >=
     - =   IGUAL
     - !=  DIFERENTE
     - AND  E  (SÓ VAI SELECIONAR SE TIVER UM E OUTRO)
     - OR   OU  ( SELECIONA SE PELO MENOS UMA CONDIÇÃO FOR VERDADEIRO)
+    - NOT  (NAO)
       
       ```
 	select nome,descricao, ano from cursos
@@ -313,3 +312,92 @@ drop TABLE nome_tabela;
 
     //O CODIGO SÓ seleciona se um e outro forem verdadeiros, ou seja se uma coluna tiver carga maior que 15 e ano maior que 2018, ele não vai selecionar esse registro
     ```
+  - Operador LIKE
+    - a função do LIKE é ser parecido, "tipo". Pode ser usado pra encontrar valores que começam como determinada letra, por exemplo:
+      ```
+	SELECT * from cursos
+	where nome like 'J%';
+
+	//seleciona em todos os campos da tabela cursos onde o nome se pareça com J seguido de qualquer coisa. O % é um coringa, ele vai trocar por nenhum ou qualquer outro caractere
+	// se colocar o % antes ele testaria o final, ou seja se algum nome termina com J
+      ```
+- WildCards
+  - %
+  - _
+
+- Distiguindo Valores
+  ```
+	select distinct nacionalidade from pessoas;
+  ```
+  - distinct serve para eliminar repetições, então  no caso do código acima ele iria parar de retornar varios 'brasil' e retornaria mostrando só uma vez já que é a unica nacionalidade
+
+- Funções de agregações
+  - count()
+    ```
+	select count(*) from cursos where carga > '50';  //aqui procura em todos os registros
+    	select count(nome) from cursos where carga > '50';  // aqui procura especificamente na coluna nome
+
+    // mas ambos retornam o mesmo valor nesse caso
+    ```
+  - Poderia contar na mão quantos registros tem na tabela cursos com carga maior que 50 mas o count() ja conta automaticamente.
+- MAX()
+  ```
+	SELECT MAX(carga) from cursos order by carga;     //Aqui seleciona dentro da tabela cursos o maior elemento que tiver a maior carga 
+	select max(total_aulas) from cursos where ano = '2016';   //Pedindo pro SQL ver qual foi o maior valor de aulas no ano de 2016
+  
+  ```
+- MIN() Mesma coisa do MAX() só que minimo
+- SUM() Serve pra somar
+- AVG() Faz a média
+
+-EXERCICIOS
+```
+1) Uma lista com o nome de todos os gafanhotos Mulheres.
+2) Uma lista com os dados de todos aqueles que nasceram entre 1/Jan/2000 e 31/Dez/2015.
+3) Uma lista com o nome de todos os homens que trabalham como programadores.
+4) Uma lista com os dados de todas as mulheres que nasceram no Brasil e que têm seu nome iniciando com a letra J.
+5) Uma lista com o nome e nacionalidade de todos os homens que têm Silva no nome, não nasceram no Brasil e pesam menos de 100 Kg.
+6) Qual é a maior altura entre gafanhotos Homens que moram no Brasil?
+7) Qual é a média de peso dos gafanhotos cadastrados?
+8) Qual é o menor peso entre os gafanhotos Mulheres que nasceram fora do Brasil e entre 01/Jan/1990 e 31/Dez/2000?
+9) Quantas gafanhotos Mulheres tem mais de 1.90cm de altura?
+
+-----------RESPOSTAS-------------------------
+#exec1 mostrando lista do nomes das pessoas,
+
+SELECT nome from pessoas;   
+
+#exec2
+select * from pessoas where nascimento between '2000-01-01' and '2015-12-31';  #selecionado todos os dados na tabela pessoa onde na coluna nascimento estiver entre data 1 e data 2 solicitada
+
+#exec3
+SELECT nome from pessoas where sexo = 'M';
+
+#exec4
+select * from pessoas where nacionalidade = 'Brasil' and nome like  'm%a';
+
+#exec5
+
+select * from pessoas where peso > '60';
+select * from pessoas where peso > '60' and sexo = 'M';
+
+#exec6
+
+select max(altura) from pessoas where sexo = 'F';
+
+#exec7 - media de peso
+
+select avg(peso) from pessoas;
+
+#exec8
+
+select min(peso) from pessoas where sexo = 'M' and nacionalidade = 'Brasil'; #and nascimento between  '1990-01-01' and '2000-12-31'
+
+#exec9
+
+select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
+
+
+
+
+```
