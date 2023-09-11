@@ -177,3 +177,56 @@ drop TABLE nome_tabela;
 	drop table if exists nome_tabela
   ```
 - Alter table e Drop table são DDL
+- Registro,linha e tupla são a mesma coisa
+
+- Manipulando Linhas com UPDATE, DELETE e TRUNCATE
+  - Visualize a seguinte situação : foi digitado um nome erro em uma linha e vc quer mudar para o nome correto, o que fazer nessa situação?
+    ```
+	UPDATE nome_tabela SET nome_coluna = 'y' WHERE id_referencia = 'x';
+
+    	um exemplo com valores reais:
+
+    	UPDATE cursos SET nome = 'javascript' WHERE id_cursos = '3'
+    ```
+    - Note que eu estou dando update na tabela cursos, modificando o conteudo da coluna 'nome' para 'javascript' onde o id seja 3 . Isso pq estou pegando a primray Key como referencia e chave primária NUNCA se repete
+    - Alterando duas colunas ao mesmo tempo:
+      ```
+	UPDATE cursos SET nome = 'javascript', ano = '2018'         // ano seria outra coluna na MESMA LINHA
+	 WHERE id_cursos = '3'
+      ```
+      - Dessa maneira é só separar entre virgulas
+- Caso de update sem estar usando where numa chave primária , o que já não deixaria alterar mais de 1 linha, vc pode usar o parametro LIMIT, por exemplo:
+  ```
+	 UPDATE cursos SET nome = 'javascript', ano = '2018', carga = '98'        
+	 WHERE id_cursos = '3'
+  	 LIMIT 1;
+  ```
+ 	
+- UPDATE É PERIGOSO , porque pode alterar várias linhas de uma vez sem querer
+  - o proprio MySQL Workbench evita isso nas configurações: EDIT -> PREFERENCES -> SAFE UPDATES
+ ```
+ 	 UPDATE cursos SET ano = '2090', carga = '998'        
+	 WHERE ano = '2018'
+```
+	- Nesse caso ele estaria mudando o ano e a carga para esses valores em TODAS as linhas onde ano for igual a 2018 (ano = '2018')
+ 	- Pra evitar poderia usar o LIMIT pra não alterar várias linhas
+  
+- REMOVENDO UMA LINHA (DELETE)
+  - pode deletar igual no update, usando uma chave primária e apagando uma linha ou usando um valor de campo como referencia e assim apagaria todas as linhas que possuir aquele valor(NOT SAFE DELETE), exemplos:
+    ```
+	delete from cursos where id_curso ='2'; 
+    ```
+   - Dessa maneira apagaria onde tem a primary key id_curso 2
+   - Agora pra apagar várias linhas:
+     ```
+	delete from cursos where ano = '2018';
+     ```
+     - Aqui ele busca na tabela cursos na coluna ano estiver com valor de '2018' e apaga todas as linhas q tiverem ano como 2018
+
+- Removendo TODAS as linhas de uma TABELA:
+   ```
+	TRUNCATE nome_tabela;
+   ```
+- DELETE, UPDATE e TRUNCATE SÃO comandos DML
+- Diferença entre o TRUNCATE e o DROP TABLE:
+  	- os dois comandos apagam mas o TRUNCATE apaga todos os dados mantendo a estrutura da tabela e o DROP TABLE apaga tudo, inclusive a estrutura da tabela.
