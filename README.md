@@ -272,8 +272,8 @@ drop TABLE nome_tabela;
   - Selecionando linhas e colunas usando operadores relacionais
     - <   MENOR
     - <=  MENOR IGUAL
-    - >   MAIOR
-    - >=  MAIOR IGUAL
+    -   >   MAIOR
+    -  >=  MAIOR IGUAL
     - =   IGUAL
     - !=  DIFERENTE
     - AND  E  (SÓ VAI SELECIONAR SE TIVER UM E OUTRO)
