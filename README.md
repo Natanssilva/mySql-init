@@ -230,3 +230,12 @@ drop TABLE nome_tabela;
 - DELETE, UPDATE e TRUNCATE SÃO comandos DML
 - Diferença entre o TRUNCATE e o DROP TABLE:
   	- os dois comandos apagam mas o TRUNCATE apaga todos os dados mantendo a estrutura da tabela e o DROP TABLE apaga tudo, inclusive a estrutura da tabela.
+  	  
+- Gerenciando cópias de segurança MySQL e exportando DATABASE
+  - Dump = cópia do banco de dados
+  - Workbench = SERVER -> Export Database -> Export to self contained -> include create Schema
+  - Vai criar uma pasta dumps em DOCUMENTOS com o arquivo SQL
+- Importando banco de dados:
+   - server -> Import Database
+ 
+- Com servidores locais completos como XAMPP, LARAGON e outros voce pode analisar seu databse pelo phpMyADMIN e manipular dados por lá, onde vai mostrar os comandos sql e serve como aprendizado
