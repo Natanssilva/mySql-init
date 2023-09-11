@@ -277,7 +277,7 @@ drop TABLE nome_tabela;
     - =   IGUAL
     - !=  DIFERENTE
     - AND  E  (SÓ VAI SELECIONAR SE TIVER UM E OUTRO)
-    - OR   OU
+    - OR   OU  ( SELECIONA SE PELO MENOS UMA CONDIÇÃO FOR VERDADEIRO)
       
       ```
 	select nome,descricao, ano from cursos
