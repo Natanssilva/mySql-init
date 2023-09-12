@@ -444,4 +444,48 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 	where ano > 2010
 	group by carga
 	HAVING carga > (select avg(carga) from cursos);      //o segundo select faz a media de cargas da tabela cursos, ou seja soma cada carga e divide pela quantidade, isso deixa d forma dinamica caso as cargas aumentem, por isso é melhor doq usar um valor fixo calculado do select sozinho
+
+
+	EXERCICIOS:
+
+	#exec1
+	select nome, count(*) from pessoas
+	group by nome;
+	
+	#exec2
+	select * from pessoas;
+	
+	select sexo, count(*) from pessoas
+	where nascimento > '1968-01-01'
+	group by sexo;
+		
+	#exec3
+	
+	select nacionalidade, count(*) from pessoas 
+	where nacionalidade != 'Brasil'
+	group by nacionalidade;
+	
+	#exec4
+	select altura, count(*) from pessoas
+	where peso > '100'
+	group by altura
+	having  altura >  (select avg(altura));
+
       ```
+
+- Modelo Relacional
+
+
+
+- Adicionando chave estrangeira (Foreign key)
+  ```
+	alter table pessoas add column cursopreferido int;     //adicionando na tabela pessoas uma coluna cursopreferido int pq tem que ser o mesmo tipo da chave primaria e TAMANHO TB
+
+	alter table pessoas
+	add foreign key (cursopreferido)
+	REFERENCES cursos(id_curso);
+
+  	//DANDO UPDATE
+
+  	update pessoas set cursopreferido = '3' where id = '1';
+  
