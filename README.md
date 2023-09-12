@@ -447,7 +447,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 
 
 	EXERCICIOS:
-
+```
 	#exec1
 	select nome, count(*) from pessoas
 	group by nome;
