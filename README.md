@@ -488,4 +488,15 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
   	//DANDO UPDATE
 
   	update pessoas set cursopreferido = '3' where id = '1';
-  
+	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '1' WHERE (`id` = '2');
+	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '4' WHERE (`id` = '3');
+	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '2' WHERE (`id` = '4');
+```
+- JOIN
+- JOIN é uma junçãp. join x on
+  ```
+	select pessoas.nome, cursos.nome,cursos.ano 
+	from pessoas 
+	join cursos on cursos.id_curso = pessoas.cursopreferido
+	order by pessoas.nome;
+```
