@@ -410,5 +410,38 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
   	//esse segundo código seleciona a coluna total de aulas, ele vai usar a função pra contabilizar isso na tablea cursos agrupando do campo total aula e ordenando pelo mesmo campo
   	// esse codigo vai retornar todos os total_aulas e do lado o count(*) que vai mostrar quantos de cada valor tem ou seja 1: total_aulas(10) o count(*) vai ser 1 por só ter uma linha com 10 em total_aulas
   ```
+- Agrupando e agregando
+  ```
+	select carga, count(nome) from cursos
+	group by carga;
 
+  	// esse código ele vai selecionar cargas, contar o total de acordo com nome, pegando da tabela cursos e agrupando por carga
+  ```
 
+  ```
+  	select carga, count(nome) from cursos
+	group by carga
+	HAVING count(nome) > 3;
+
+	// esse código ele vai selecionar cargas, contar o total de acordo com nome, pegando da tabela cursos e agrupando por carga só que eu só vou MOSTRAR SOMENTE QUEM TIVER o contador ou seja o TOTAL 		maior que 3, ou seja ele mostraria a carga de 25 e o count 8 porque nessa tablea tem 8 cursos com carga de 25
+
+	//ou
+  
+	select ano, count(*) from cursos
+	group by ano
+	having ano > '2013'
+	order by count(*);
+
+  	//aqui vai mostrar somente quando ano for maior que 2013
+  ```
+  - OBS: Só pode usar junto ao HAVING oq vc agrupou com group by
+  - Exercicio realizado:
+    - selecionar a coluna carga e mostrar o total de quantos cargas possuem o mesmo valor de carga FILTRANDO por ano acima de 2010 AGRUPANDO por carga SOMENTE quando carga for maior que a média de cargas:
+    - Resolução
+      
+      ```
+	select carga,count(*) from cursos  
+	where ano > 2010
+	group by carga
+	HAVING carga > (select avg(carga) from cursos);      //o segundo select faz a media de cargas da tabela cursos, ou seja soma cada carga e divide pela quantidade, isso deixa d forma dinamica caso as cargas aumentem, por isso é melhor doq usar um valor fixo calculado do select sozinho
+      ```
