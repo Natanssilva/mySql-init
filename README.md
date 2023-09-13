@@ -474,8 +474,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
       ```
 
 - Modelo Relacional
-
-
+	-Links estudos : https://www.devmedia.com.br/modelagem-1-n-ou-n-n/38894
 
 - Adicionando chave estrangeira (Foreign key)
   ```
