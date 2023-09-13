@@ -278,14 +278,15 @@ drop TABLE nome_tabela;
     - OR   OU  ( SELECIONA SE PELO MENOS UMA CONDIÇÃO FOR VERDADEIRO)
     - NOT  (NAO)
       
-      ```
+ ```
 	select nome,descricao, ano from cursos
 	where ano  <= '2017'
 	order by ano;
+  
 
 //O CODIGO BUSCA NA COLUNA nome, descricao e ano da tabela cursos onde o ano for menor ou igual a 2017 e ordena por ano
 // assim retorna os campos nome, descricao e ano que tem como valor de ano menor ou igual a 2017
-      ```
+```
 - BETWEEN
   - Selecionar os dados entre uma data e outra(uma faixa) por exemplo mas vale pra qualquer coluna
    ```
@@ -314,13 +315,13 @@ drop TABLE nome_tabela;
     ```
   - Operador LIKE
     - a função do LIKE é ser parecido, "tipo". Pode ser usado pra encontrar valores que começam como determinada letra, por exemplo:
-      ```
+    ```
 	SELECT * from cursos
 	where nome like 'J%';
 
 	//seleciona em todos os campos da tabela cursos onde o nome se pareça com J seguido de qualquer coisa. O % é um coringa, ele vai trocar por nenhum ou qualquer outro caractere
 	// se colocar o % antes ele testaria o final, ou seja se algum nome termina com J
-      ```
+    ```
 - WildCards
   - %
   - _
@@ -399,7 +400,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 ```
 
 - Agrupando registros
-  ```
+  	```
   	SELECT carga from cursos
 	GROUP BY carga;     //Agrupamento. Esse código mostraria coluna carga e todos os valores agrupados por carga.
 
@@ -409,7 +410,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 
   	//esse segundo código seleciona a coluna total de aulas, ele vai usar a função pra contabilizar isso na tablea cursos agrupando do campo total aula e ordenando pelo mesmo campo
   	// esse codigo vai retornar todos os total_aulas e do lado o count(*) que vai mostrar quantos de cada valor tem ou seja 1: total_aulas(10) o count(*) vai ser 1 por só ter uma linha com 10 em total_aulas
-  ```
+  	```
 - Agrupando e agregando
   ```
 	select carga, count(nome) from cursos
@@ -418,12 +419,12 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
   	// esse código ele vai selecionar cargas, contar o total de acordo com nome, pegando da tabela cursos e agrupando por carga
   ```
 
-  ```
+  	```
   	select carga, count(nome) from cursos
 	group by carga
 	HAVING count(nome) > 3;
 
-	// esse código ele vai selecionar cargas, contar o total de acordo com nome, pegando da tabela cursos e agrupando por carga só que eu só vou MOSTRAR SOMENTE QUEM TIVER o contador ou seja o TOTAL 		maior que 3, ou seja ele mostraria a carga de 25 e o count 8 porque nessa tablea tem 8 cursos com carga de 25
+	// esse código ele vai selecionar cargas, contar o total de acordo com nome, pegando da tabela cursos e agrupando por carga só que eu só vou MOSTRAR SOMENTE QUEM TIVER o contador ou seja o TOTAL 		maior que 3, ou seja ele mostraria a carga de 25 e o 	count 8 porque nessa tablea tem 8 cursos com carga de 25
 
 	//ou
   
@@ -433,7 +434,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 	order by count(*);
 
   	//aqui vai mostrar somente quando ano for maior que 2013
-  ```
+  	```
   - OBS: Só pode usar junto ao HAVING oq vc agrupou com group by
   - Exercicio realizado:
     - selecionar a coluna carga e mostrar o total de quantos cargas possuem o mesmo valor de carga FILTRANDO por ano acima de 2010 AGRUPANDO por carga SOMENTE quando carga for maior que a média de cargas:
@@ -445,9 +446,10 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 	group by carga
 	HAVING carga > (select avg(carga) from cursos);      //o segundo select faz a media de cargas da tabela cursos, ou seja soma cada carga e divide pela quantidade, isso deixa d forma dinamica caso as cargas aumentem, por isso é melhor doq usar um valor fixo calculado do select sozinho
 
+	```
 
 	EXERCICIOS:
-```
+	```
 	#exec1
 	select nome, count(*) from pessoas
 	group by nome;
@@ -477,7 +479,7 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 	-Links estudos : https://www.devmedia.com.br/modelagem-1-n-ou-n-n/38894
 
 - Adicionando chave estrangeira (Foreign key)
-  ```
+  	```
 	alter table pessoas add column cursopreferido int;     //adicionando na tabela pessoas uma coluna cursopreferido int pq tem que ser o mesmo tipo da chave primaria e TAMANHO TB
 
 	alter table pessoas
@@ -490,12 +492,12 @@ select count(altura) from pessoas where sexo = 'F' and altura > '1.60';
 	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '1' WHERE (`id` = '2');
 	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '4' WHERE (`id` = '3');
 	UPDATE `cadastro`.`pessoas` SET `cursopreferido` = '2' WHERE (`id` = '4');
-```
+	```
 - JOIN
 - JOIN é uma junçãp. join x on
-  ```
+  	```
 	select pessoas.nome, cursos.nome,cursos.ano 
 	from pessoas 
 	join cursos on cursos.id_curso = pessoas.cursopreferido
 	order by pessoas.nome;
-```
+	```
